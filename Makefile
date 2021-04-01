@@ -3,14 +3,11 @@ ARCH            = $(shell uname -m | sed s,i[3456789]86,ia32,)
 OBJS		= main.o
 TARGET		= hello.efi
 
-EFIINC		= /usr/local/include/efi
-EFIINCS		= -I$(EFIINC) -I$(EFIINC)/$(ARCH) -I$(EFIINC)/protocol
-LIB		= /usr/local/lib
+LIB		= /usr/lib
 EFI_CRT_OBJS	= $(LIB)/crt0-efi-$(ARCH).o
 EFI_LDS		= $(LIB)/elf_$(ARCH)_efi.lds
 
-CFLAGS		= $(EFIINCS) \
-		  -fshort-wchar -fno-builtin -ffreestanding \
+CFLAGS		= -fshort-wchar -fno-builtin -ffreestanding \
 		  -fno-common -fno-stack-protector -fpic \
 		  -Wall
 
